@@ -42,7 +42,7 @@ export const get_roles = async (page, limit, all = false) => {
     }
 }
 
-export const get_role = async (id, token) => {
+export const get_role = async (id) => {
     try {
         const refresh = await refresh_access_token();
         const { exp, decode: { decode }, accessToken } = refresh;

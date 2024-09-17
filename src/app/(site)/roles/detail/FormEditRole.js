@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react";
-import { useTokenContext } from "@/hooks/useTokenContext";
 import { useRouter } from "next/navigation";
 
 import list_permission from "@/util/list_permission";
@@ -33,9 +31,6 @@ import addRoleSchema from "@/schema/add_role/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { refresh_token } from "@/actions/token";
-import { toast } from "sonner";
-
 export default function FormEditRole({ data, id }) {
     const router = useRouter();
     const form = useForm({
@@ -45,26 +40,6 @@ export default function FormEditRole({ data, id }) {
             permissions: !data?.success ? [] : data?.detail_role?.permissions?.map(permission => permission.permission),
         }
     });
-
-    const { allTokens, setTokens } = useTokenContext();
-    useEffect(() => {
-        if (!data?.success && data?.error?.expiredAt) {
-            (async () => {
-                const refreshStatus = await refresh_token(allTokens?.refresh_token, true);
-                if (!refreshStatus?.success) router.push("/sign-out");
-
-                setTokens({ ...allTokens, access_token: refreshStatus?.access_token });
-            })();
-        }
-        else if (data?.success) {
-            form?.reset({
-                role: data?.detail_role?.role,
-                permissions: data?.detail_role?.permissions?.map(permission => permission.permission),
-            })
-        }
-
-        if (!data?.success && data?.client) toast.error(data?.message);
-    }, [data]);
 
     return (
         <div className="mb-[30px]">

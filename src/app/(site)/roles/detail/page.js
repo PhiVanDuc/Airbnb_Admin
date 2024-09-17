@@ -6,7 +6,7 @@ import WrapperModifyStuff from "@/components/WrapperModifyStuff";
 
 export default async function DetailRolePage({ searchParams }) {
     if (isValidUUID(searchParams.id)) {
-        const role = await get_role(searchParams.id);
+        const role = await get_role(searchParams?.id);
         if (role === 401) redirect("/sign-out");
 
         const { result, exp, decode, accessToken } = role;

@@ -75,7 +75,7 @@ export default function AddCategoryPage() {
     const [isVisible, setIsVisible] = useState(false);
     const [pending, setPending] = useState(false);
 
-    const { allTokens, setTokens } = useTokenContext();
+    const { setTokens } = useTokenContext();
 
     const form = useForm({
         resolver: zodResolver(categorySchema),

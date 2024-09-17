@@ -2,6 +2,7 @@ import { detail_utility } from "@/actions/utility";
 import ContentHeader from "@/components/ContentHeader";
 import FormEditUtility from "./FormEditUtility";
 import WrapperModifyStuff from "@/components/WrapperModifyStuff";
+import { redirect } from "next/navigation";
 
 export default async function EditCategoryPage({ searchParams }) {
     const { id } = searchParams;

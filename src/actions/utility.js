@@ -46,14 +46,14 @@ export const get_utilities = async (page, limit, utility_type = null, all = fals
     }
 }
 
-export const detail_utility = async (utility_id, token) => {
+export const detail_utility = async (utility_id) => {
     try {
         const refresh = await refresh_access_token();
         const { exp, decode: { decode }, accessToken } = refresh;
 
         const response = await fetch(`${process.env.API_SERVER}/utilities/detail_utility?utility_id=${utility_id}`, {
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${accessToken}`
             },
             next: {
                 tags: ["detail_utility"]

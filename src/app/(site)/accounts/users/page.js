@@ -7,6 +7,8 @@ import AssignRoleForm from "../components/AssignRoleForm";
 import { get_users } from "@/actions/user";
 import { get_roles } from "@/actions/roles";
 
+import { redirect } from "next/navigation";
+
 export default async function UsersPage({ searchParams }) {
     let { page, limit } = searchParams;
 

@@ -82,8 +82,8 @@ export const edit_category = async (category_id, values, token) => {
         const response = await fetch(`${process.env.API_SERVER}/categories/edit?category_id=${category_id}`, {
             method: "POST",
             headers: {
+                "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token || access_token}`
             },
             body: JSON.stringify(values),
             next: {

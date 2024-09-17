@@ -75,7 +75,7 @@ export default function FormEditCategory({ data }) {
     const [isVisible, setIsVisible] = useState(false);
     const [pending, setPending] = useState(false);
 
-    const { allTokens, setTokens } = useTokenContext();
+    const { setTokens } = useTokenContext();
 
     const form = useForm({
         resolver: zodResolver(categorySchema),
@@ -168,7 +168,7 @@ export default function FormEditCategory({ data }) {
             return;
         }
 
-        toast.success(edit.message);
+        toast.success(edit?.message);
 
         setPending(false);
     }

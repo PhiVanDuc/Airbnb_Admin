@@ -61,9 +61,15 @@ export default function FormEditRole({ data, id }) {
         });
 
         const result = await edit_role({ ...values, role_id: id }, refresh?.accessToken);
-        if (result === 401) router.push("/sign-out");
+        if (result === 401) {
+            router.push("/sign-out");
+            return;
+        }
 
-        if (!result.success) toast.error(result?.message);
+        if (!result.success) {
+            toast.error(result?.message);
+            return;
+        }
         else toast.success(result?.message);
 
         setPending(false);

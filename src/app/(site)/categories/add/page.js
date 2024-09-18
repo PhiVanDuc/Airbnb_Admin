@@ -165,6 +165,7 @@ export default function AddCategoryPage() {
         }
         else if (!add.success) {
             toast.error(add?.message);
+            setPending(false);
             return;
         }
 
@@ -297,6 +298,7 @@ export default function AddCategoryPage() {
                         onClick={() => {
                             if (!form.getValues("icon")) toast.warning("Please choose icon for category!");
                         }}
+                        disabled={pending}
                     >
                         Add category
                     </Button>

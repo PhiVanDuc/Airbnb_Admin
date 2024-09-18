@@ -165,6 +165,7 @@ export default function FormEditCategory({ data }) {
         }
         else if (!edit?.success) {
             toast.error(edit?.message);
+            setPending(false);
             return;
         }
 
@@ -295,6 +296,7 @@ export default function FormEditCategory({ data }) {
                         onClick={() => {
                             if (!form.getValues("icon")) toast.warning("Please choose icon for category!");
                         }}
+                        disabled={pending}
                     >
                         Edit category
                     </Button>

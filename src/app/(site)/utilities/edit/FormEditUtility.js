@@ -276,6 +276,7 @@ export default function FormEditUtility({ data }) {
                         onClick={() => {
                             if (!form.getValues("icon")) toast.warning("Please choose icon for category!");
                         }}
+                        disabled={pending}
                     >
                         Edit utility
                     </Button>

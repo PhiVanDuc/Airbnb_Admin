@@ -151,7 +151,7 @@ export default function AddUtilityPage() {
 
     const onSubmit = async (values) => {
         setPending(true);
-        
+
         const refresh = await clientRefresh({
             router,
             setTokens
@@ -162,8 +162,14 @@ export default function AddUtilityPage() {
             router.push("/sign-out");
             return;
         }
+        else if (!add) {
+            toast.error("Add again, please.");
+            setPending(false);  
+            return;
+        }
         else if (!add.success) {
             toast.error(add?.message);
+            setPending(false);  
             return;
         }
 
@@ -297,6 +303,7 @@ export default function AddUtilityPage() {
                         onClick={() => {
                             if (!form.getValues("icon")) toast.warning("Please choose icon for category!");
                         }}
+                        disabled={pending}
                     >
                         Add utility
                     </Button>

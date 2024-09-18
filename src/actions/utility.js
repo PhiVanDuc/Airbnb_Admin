@@ -83,6 +83,8 @@ export const detail_utility = async (utility_id) => {
 
 export const add_utility = async (values, token) => {
     try {
+        if (Object.keys(values).length === 0) return null;
+
         const response = await fetch(`${process.env.API_SERVER}/utilities/add`, {
             method: "POST",
             headers: {
